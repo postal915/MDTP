@@ -1,0 +1,2 @@
+rootProject.name = "MDTP"
+include ':app'
