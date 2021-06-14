@@ -1,6 +1,6 @@
-package com.example.mdtp.stevdza.api
+package com.example.mdtp.api
 
-import com.example.mdtp.stevdza.util.Constants.Companion.BASE_URL
+import com.example.mdtp.util.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

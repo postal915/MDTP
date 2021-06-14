@@ -1,7 +1,8 @@
-package com.example.mdtp.stevdza.repository
+package com.example.mdtp.repository
 
+import com.example.mdtp.model.detail.MovieDetail
 import com.example.mdtp.model.movie.ResultDTO
-import com.example.mdtp.stevdza.api.RetrofitInstance
+import com.example.mdtp.api.RetrofitInstance
 import retrofit2.Response
 
 class Repository {

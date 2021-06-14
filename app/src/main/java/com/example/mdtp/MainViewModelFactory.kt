@@ -1,8 +1,8 @@
-package com.example.mdtp.stevdza
+package com.example.mdtp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.mdtp.stevdza.repository.Repository
+import com.example.mdtp.repository.Repository
 
 class MainViewModelFactory(private val repository: Repository): ViewModelProvider.Factory {
 

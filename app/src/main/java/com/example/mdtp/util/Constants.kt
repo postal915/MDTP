@@ -1,4 +1,4 @@
-package com.example.mdtp.stevdza.util
+package com.example.mdtp.util
 
 class Constants {
 
