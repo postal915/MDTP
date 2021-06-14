@@ -3,6 +3,7 @@ package com.example.mdtp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mdtp.model.detail.MovieDetailDTO
 import com.example.mdtp.model.movie.ResultDTO
 
 import com.example.mdtp.repository.Repository
@@ -11,12 +12,20 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<Response<ResultDTO>> = MutableLiveData()
+    val movies: MutableLiveData<Response<ResultDTO>> = MutableLiveData()
+    val movieDetail: MutableLiveData<Response<MovieDetailDTO>> = MutableLiveData()
 
     fun getMovies() {
         viewModelScope.launch {
             val response = repository.getMovies()
-            myResponse.value = response
+            movies.value = response
+        }
+    }
+
+    fun getMovieDetail(movieId: Int) {
+        viewModelScope.launch {
+            val response = repository.getMovieDetail(movieId)
+            movieDetail.value = response
         }
     }
 }
