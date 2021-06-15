@@ -1,9 +1,8 @@
 package com.example.mdtp.model.movie
 
-
 import com.google.gson.annotations.SerializedName
 
-data class ResultDTO(
+data class DataDTO(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")

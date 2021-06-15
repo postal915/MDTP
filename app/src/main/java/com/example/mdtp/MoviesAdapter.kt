@@ -1,11 +1,12 @@
 package com.example.mdtp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mdtp.model.movie.DataDTO
 import com.example.mdtp.model.movie.MovieDTO
-import com.example.mdtp.model.movie.ResultDTO
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
@@ -24,8 +25,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        if (movieList[position].posterPath != null) holder.itemView.posterPath_textView.text =
-            movieList[position].posterPath.toString()
+        Log.d("Response size =", "${movieList.size}")
+//        if (movieList[position].posterPath != null) holder.itemView.posterPath_textView.text =
+//            movieList[position].posterPath
+        holder.itemView.posterPath_textView.text =
+            movieList[position].posterPath
         holder.itemView.title_textView.text = movieList[position].title
     }
 
@@ -33,7 +37,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
         return movieList.size
     }
 
-    fun setData(response: ResultDTO) {
+    fun setData(response: DataDTO) {
         movieList = response.results
         notifyDataSetChanged()
     }
