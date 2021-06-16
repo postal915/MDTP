@@ -26,8 +26,6 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         Log.d("Response size =", "${movieList.size}")
-//        if (movieList[position].posterPath != null) holder.itemView.posterPath_textView.text =
-//            movieList[position].posterPath
         holder.itemView.posterPath_textView.text =
             movieList[position].posterPath
         holder.itemView.title_textView.text = movieList[position].title
