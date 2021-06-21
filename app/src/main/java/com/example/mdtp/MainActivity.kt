@@ -3,7 +3,6 @@ package com.example.mdtp
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mdtp.repository.Repository
@@ -13,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
 
-    private val moviesAdapter by lazy { MoviesAdapter() }
+    private val moviesAdapter by lazy { MoviesAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         viewModel.getMovies()
-        viewModel.movies.observe(this, Observer { response ->
+        viewModel.movies.observe(this, { response ->
             if (response.isSuccessful) {
                 response.body()?.let { moviesAdapter.setData(it) }
             } else {
