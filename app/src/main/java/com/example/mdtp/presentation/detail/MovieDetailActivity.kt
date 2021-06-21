@@ -1,4 +1,4 @@
-package com.example.mdtp
+package com.example.mdtp.presentation.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

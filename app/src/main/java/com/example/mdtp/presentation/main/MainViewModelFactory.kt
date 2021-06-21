@@ -1,4 +1,4 @@
-package com.example.mdtp
+package com.example.mdtp.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

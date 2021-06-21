@@ -1,4 +1,4 @@
-package com.example.mdtp
+package com.example.mdtp.presentation.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mdtp.presentation.detail.MovieDetailActivity
+import com.example.mdtp.R
 import com.example.mdtp.model.movie.DataDTO
 import com.example.mdtp.model.movie.MovieDTO
 import kotlinx.android.synthetic.main.movie_item.view.*
@@ -21,7 +23,7 @@ class MoviesAdapter(private val context: Context) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MoviesAdapter.MoviesViewHolder {
+    ): MoviesViewHolder {
         return MoviesViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         )
