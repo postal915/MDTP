@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mdtp.presentation.detail.MovieDetailActivity
 import com.example.mdtp.R
 import com.example.mdtp.model.movie.DataDTO
 import com.example.mdtp.model.movie.MovieDTO
+import com.example.mdtp.presentation.detail.MovieDetailActivity
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MoviesAdapter(private val context: Context) :
@@ -35,13 +35,7 @@ class MoviesAdapter(private val context: Context) :
         holder.itemView.itemRowLayout.setOnClickListener {
             Log.d("Main", "on click ${movieList[position].title}")
             val intent = Intent(context, MovieDetailActivity()::class.java)
-            intent.putExtra("id", movieList[position].id.toString())
-
-            // TODO Remove the rest putExtra
-            intent.putExtra("title", movieList[position].title)
-            intent.putExtra("overview", movieList[position].overview)
-            intent.putExtra("release_date", movieList[position].releaseDate)
-            //
+            intent.putExtra("movieId", movieList[position].id)
 
             context.startActivity(intent)
         }
