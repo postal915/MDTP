@@ -1,6 +1,7 @@
 package com.example.mdtp.presentation.search
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mdtp.R
@@ -18,5 +19,15 @@ class SearchActivity : AppCompatActivity() {
         val viewModelFactory = SearchViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
 
+        viewModel.getSearchMovie("sex")
+        viewModel.foundFilms.observe(this, { response ->
+            if (response.isSuccessful) {
+                response.body()?.let {
+
+                }
+            } else {
+                Toast.makeText(this, response.code(), Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
