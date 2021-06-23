@@ -1,12 +1,15 @@
 package com.example.mdtp.presentation.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mdtp.R
 import com.example.mdtp.presentation.adapter.MoviesAdapter
+import com.example.mdtp.presentation.search.SearchActivity
 import com.example.mdtp.repository.Repository
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -39,5 +42,10 @@ class MainActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         recyclerView.adapter = moviesAdapter
         recyclerView.layoutManager = GridLayoutManager(this, 2)
+    }
+
+    fun searchFabOnClick(view: View) {
+        val intent = Intent(view.context, SearchActivity::class.java)
+        startActivity(intent)
     }
 }
