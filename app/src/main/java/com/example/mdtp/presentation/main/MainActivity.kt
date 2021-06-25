@@ -2,6 +2,8 @@ package com.example.mdtp.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -47,5 +49,16 @@ class MainActivity : AppCompatActivity() {
     fun searchFabOnClick(view: View) {
         val intent = Intent(view.context, SearchActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intent = Intent(this, SearchActivity::class.java)
+        startActivity(intent)
+        return super.onOptionsItemSelected(item)
     }
 }
