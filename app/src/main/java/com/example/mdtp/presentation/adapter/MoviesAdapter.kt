@@ -2,7 +2,6 @@ package com.example.mdtp.presentation.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,10 +29,8 @@ class MoviesAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        Log.d("Response size =", "${movieList.size}")
         holder.itemView.title_textView.text = movieList[position].title
         holder.itemView.itemRowLayout.setOnClickListener {
-            Log.d("Main", "on click ${movieList[position].title}")
             val intent = Intent(context, MovieDetailActivity()::class.java)
             intent.putExtra("movieId", movieList[position].id)
 

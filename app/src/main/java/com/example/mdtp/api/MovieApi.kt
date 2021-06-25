@@ -22,4 +22,11 @@ interface MovieApi {
         @Query("api_key") apiKey: String = "1cc33b07c9aa5466f88834f7042c9258",
         @Query("language") lang: String = "language=en-US"
     ): Response<MovieDetailDTO>
+
+    @GET("3/search/movie")
+    suspend fun getSearchMovie(
+        @Query("api_key") apiKey: String = "1cc33b07c9aa5466f88834f7042c9258",
+        @Query("language") lang: String = "language=en-US",
+        @Query("query") searchQuery: String
+    ): Response<DataDTO>
 }
