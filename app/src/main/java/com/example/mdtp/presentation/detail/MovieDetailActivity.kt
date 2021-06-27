@@ -32,6 +32,9 @@ class MovieDetailActivity : AppCompatActivity() {
                     val urlMoviePoster = BASE_URL_Movie_Poster + it.posterPath
                     Glide.with(this)
                         .load(urlMoviePoster)
+                        .placeholder(R.drawable.placeholder_image)
+                        .error(R.drawable.error_image)
+                        .fallback(R.drawable.null_image)
                         .into(moviePoster_IV)
 
                     movieTitle_TV.text = it.title

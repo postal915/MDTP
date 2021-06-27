@@ -35,6 +35,9 @@ class MoviesAdapter(private val context: Context) :
         val urlMoviePoster = BASE_URL_Movie_Poster + movieList[position].posterPath
         Glide.with(context)
             .load(urlMoviePoster)
+            .placeholder(R.drawable.placeholder_image)
+            .error(R.drawable.error_image)
+            .fallback(R.drawable.null_image)
             .into(holder.itemView.imageView)
 
         holder.itemView.title_textView.text = movieList[position].title
