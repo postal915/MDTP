@@ -71,6 +71,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun setupRecyclerView() {
         recyclerViewSearch.adapter = moviesAdapter
-        recyclerViewSearch.layoutManager = GridLayoutManager(this, 2)
+        recyclerViewSearch.layoutManager = GridLayoutManager(this, 3)
     }
 }

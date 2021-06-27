@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mdtp.R
 import com.example.mdtp.model.movie.DataDTO
 import com.example.mdtp.model.movie.MovieDTO
 import com.example.mdtp.presentation.detail.MovieDetailActivity
+import com.example.mdtp.util.Constants.Companion.BASE_URL_Movie_Poster
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MoviesAdapter(private val context: Context) :
@@ -29,6 +31,15 @@ class MoviesAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
+
+        val urlMoviePoster = BASE_URL_Movie_Poster + movieList[position].posterPath
+        Glide.with(context)
+            .load(urlMoviePoster)
+            .placeholder(R.drawable.placeholder_image)
+            .error(R.drawable.error_image)
+            .fallback(R.drawable.null_image)
+            .into(holder.itemView.imageView)
+
         holder.itemView.title_textView.text = movieList[position].title
         holder.itemView.itemRowLayout.setOnClickListener {
             val intent = Intent(context, MovieDetailActivity()::class.java)
