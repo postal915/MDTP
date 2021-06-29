@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getMovies()
         viewModel.movies.observe(this, { response ->
             if (response.isSuccessful) {
-                response.body()?.let { moviesAdapter.setData(it) }
+                response.body()?.let { moviesAdapter.setData(it.results) }
             } else {
                 Toast.makeText(this, response.code(), Toast.LENGTH_LONG).show()
             }

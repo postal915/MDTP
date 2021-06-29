@@ -31,7 +31,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         viewModel.foundFilms.observe(this, { response ->
             if (response.isSuccessful) {
                 response.body()?.let {
-                    moviesAdapter.setData(it)
+                    moviesAdapter.setData(it.results)
                 }
             } else {
                 Toast.makeText(this, response.code(), Toast.LENGTH_LONG).show()
