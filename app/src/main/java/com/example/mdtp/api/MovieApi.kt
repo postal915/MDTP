@@ -16,6 +16,14 @@ interface MovieApi {
         @Query("sort_by") sort_by: String = "popularity.desc"
     ): Response<DataDTO>
 
+    @GET("3/discover/movie")
+    suspend fun getMoviesPaging(
+        @Query("api_key") apiKey: String = "1cc33b07c9aa5466f88834f7042c9258",
+        @Query("language") lang: String = "en-US",
+        @Query("page") page: Int,
+        @Query("sort_by") sort_by: String = "popularity.desc"
+    ): DataDTO
+
     @GET("3/movie/{movie_id}")
     suspend fun getMovieDetail(
         @Path("movie_id") movieId: Int,

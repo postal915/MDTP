@@ -1,5 +1,6 @@
 package com.example.mdtp.util
 
+import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
 import com.example.mdtp.model.movie.MovieDTO
 
@@ -17,27 +18,18 @@ class MyDiffUtil(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldMovieList[oldItemPosition].id == newMovieList[newItemPosition].id
+        Log.d(
+            "MyLog",
+            "areItemsTheSame ${oldMovieList[oldItemPosition] == newMovieList[newItemPosition]}"
+        )
+        return oldMovieList[oldItemPosition] == newMovieList[newItemPosition]
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return when {
-            oldMovieList[oldItemPosition].id != newMovieList[newItemPosition].id -> {
-                false
-            }
-            oldMovieList[oldItemPosition].title != newMovieList[newItemPosition].title -> {
-                false
-            }
-            oldMovieList[oldItemPosition].posterPath != newMovieList[newItemPosition].posterPath -> {
-                false
-            }
-            oldMovieList[oldItemPosition].releaseDate != newMovieList[newItemPosition].releaseDate -> {
-                false
-            }
-            oldMovieList[oldItemPosition].overview != newMovieList[newItemPosition].overview -> {
-                false
-            }
-            else -> true
-        }
+        Log.d(
+            "MyLog",
+            "areItemsTheSame ${oldMovieList[oldItemPosition] != newMovieList[newItemPosition]}"
+        )
+        return oldMovieList[oldItemPosition] != newMovieList[newItemPosition]
     }
 }
