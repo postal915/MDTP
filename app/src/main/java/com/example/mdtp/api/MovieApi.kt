@@ -37,4 +37,12 @@ interface MovieApi {
         @Query("language") lang: String = "en-US",
         @Query("query") searchQuery: String
     ): Response<DataDTO>
+
+    @GET("3/search/movie")
+    suspend fun getSearchMoviePaging(
+        @Query("api_key") apiKey: String = "1cc33b07c9aa5466f88834f7042c9258",
+        @Query("language") lang: String = "en-US",
+        @Query("page") page: Int,
+        @Query("query") searchQuery: String
+    ): DataDTO
 }

@@ -8,6 +8,7 @@ import com.example.mdtp.model.detail.MovieDetailDTO
 import com.example.mdtp.model.movie.DataDTO
 import com.example.mdtp.model.movie.MovieDTO
 import com.example.mdtp.paging.MoviesPagingSource
+import com.example.mdtp.paging.SearchMoviePagingSource
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
@@ -28,14 +29,20 @@ class Repository {
     fun getMoviesPaging(): Pager<Int, MovieDTO> {
         return Pager(
             config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-            pagingSourceFactory = ::MoviesPagingSource
+            pagingSourceFactory = { MoviesPagingSource() }
         )
     }
 
     fun getMoviesPagingFlow(): Flow<PagingData<MovieDTO>> {
         return Pager(
             config = PagingConfig(pageSize = 20, enablePlaceholders = false),
-            pagingSourceFactory = ::MoviesPagingSource
+            pagingSourceFactory = { MoviesPagingSource() }
+        ).flow
+    }
+
+    fun getSearchMoviePagingFlow(searchQuery: String): Flow<PagingData<MovieDTO>> {
+        return Pager(config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            pagingSourceFactory = { SearchMoviePagingSource(searchQuery) }
         ).flow
     }
 }

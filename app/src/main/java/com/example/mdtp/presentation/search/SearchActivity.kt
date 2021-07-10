@@ -2,21 +2,23 @@ package com.example.mdtp.presentation.search
 
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mdtp.R
-import com.example.mdtp.presentation.adapter.MoviesAdapter
+import com.example.mdtp.presentation.adapter.MoviesPagingAdapter
 import com.example.mdtp.repository.Repository
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var viewModel: SearchViewModel
 
-    private val moviesAdapter by lazy { MoviesAdapter(this) }
+    private val moviesAdapter by lazy { MoviesPagingAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +30,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val viewModelFactory = SearchViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
 
-        viewModel.foundFilms.observe(this, { response ->
-            if (response.isSuccessful) {
-                response.body()?.let {
-                    moviesAdapter.setData(it.results)
-                }
-            } else {
-                Toast.makeText(this, response.code(), Toast.LENGTH_LONG).show()
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -53,20 +46,25 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query != null && query.isNotEmpty()) {
-            searchSite(query)
+            startSearch(query)
         }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
         if (newText != null && newText.isNotEmpty()) {
-            searchSite(newText)
+            startSearch(newText)
         }
         return true
     }
 
-    private fun searchSite(query: String) {
-        viewModel.getSearchMovie(query)
+    private fun startSearch(searchQuery: String) {
+        lifecycleScope.launch {
+            viewModel.getMoviesPagingFlow(searchQuery)
+                .collectLatest { it ->
+                    moviesAdapter.submitData(it)
+                }
+        }
     }
 
     private fun setupRecyclerView() {

@@ -7,12 +7,10 @@ import com.example.mdtp.model.movie.MovieDTO
 class DiffUtilCallBack : DiffUtil.ItemCallback<MovieDTO>() {
 
     override fun areItemsTheSame(oldItem: MovieDTO, newItem: MovieDTO): Boolean {
-        Log.d("MyLog", "areItemsTheSame ${oldItem == newItem}")
-        return oldItem == newItem
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: MovieDTO, newItem: MovieDTO): Boolean {
-        Log.d("MyLog", "areContentsTheSame ${oldItem == newItem}")
         return oldItem == newItem
     }
 }
