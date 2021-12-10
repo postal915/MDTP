@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MDTP">
         <activity
-            android:name=".presentation.search.SearchActivity"
-            android:label="Search Movie"
-            android:parentActivityName=".presentation.main.MainActivity" />
-        <activity
             android:name=".presentation.detail.MovieDetailActivity"
             android:label="Movie Detail"
             android:parentActivityName=".presentation.main.MainActivity" />
